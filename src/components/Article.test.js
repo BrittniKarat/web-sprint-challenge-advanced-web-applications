@@ -5,7 +5,7 @@ import userEvent from '@testing-library/user-event';
 import MutationObserver from 'mutationobserver-shim';
 
 import Article from './Article';
-import { render } from 'express/lib/response';
+import { render, screen } from 'express/lib/response';
 
 const data = {
     author: "Person",
@@ -18,8 +18,7 @@ const data = {
 }
 
 test('renders component without errors', ()=> {
-    render(<Article article={data}/>)
-    
+    render(<Article article={data}/>)  
 });
 
 test('renders headline, author from the article when passed in through props', ()=> {
