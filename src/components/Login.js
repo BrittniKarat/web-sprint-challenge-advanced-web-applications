@@ -5,10 +5,9 @@ import styled from 'styled-components';
 
 const Login = () => {
     const [details, setDetails] = useState({
-        info: {
             username: '',
-            password: ''
-        }
+            password: '',
+            error: null
     });
 
     const { push } = useHistory();
@@ -33,8 +32,13 @@ const Login = () => {
                 push('/view')
             })
             .catch(err => {
-                console.error("This is the error you are looking for" , err.response.data)
-            })
+                console.error("This is the error you are looking for" , err.response.data.error)
+                return (
+                    setDetails({ 
+                    ...details, 
+                        error : err.response.data.error})
+                )
+             })
     }
     return(
     <ComponentContainer>
@@ -64,7 +68,7 @@ const Login = () => {
                     name = 'submit'
                     id = 'submit'
                />
-            {<p id='error'>  </p>}
+            <p id='error'> {details.error}  </p>
             </FormGroup>
         </ModalContainer>
     </ComponentContainer>);
@@ -86,6 +90,10 @@ const ComponentContainer = styled.div`
     align-items: center;
     display:flex;
     color: black;
+
+    p{
+        color: red;
+    }
 `
 
 const ModalContainer = styled.div`
