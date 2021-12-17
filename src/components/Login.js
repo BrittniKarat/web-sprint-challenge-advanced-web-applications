@@ -1,13 +1,71 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import styled from 'styled-components';
 
 const Login = () => {
-    
+    const [details, setDetails] = useState({
+        info: {
+            username: '',
+            password: ''
+        }
+    });
+
+    const { push } = useHistory();
+
+    const handleChange = e => {
+        setDetails({
+            ...details,
+            [e.target.name]: e.target.value
+        })
+        console.log("These are the handle change details", details)
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        axios.post(`http://localhost:5000/api/login`, details)
+            .then(res => {
+                console.log(res)
+                const { token, role, username } = res.data;
+                localStorage.setItem('Token', token);
+                localStorage.setItem('Role', role);
+                localStorage.setItem('Username', username);
+                push('/view')
+            })
+            .catch(err => {
+                console.error("This is the error you are looking for" , err.response.data)
+            })
+    }
     return(
     <ComponentContainer>
         <ModalContainer>
             <h1>Welcome to Blogger Pro</h1>
             <h2>Please enter your account information.</h2>
+           
+            <FormGroup  onSubmit={handleSubmit}>
+                <input
+                    type ='text'
+                    name = 'username'
+                    placeholder = 'username'
+                    id = 'username'
+                    value = {details.username}
+                    onChange = {handleChange}
+                    />
+                <input 
+                    type ='password'
+                    name = 'password'
+                    id = 'password'
+                    placeholder ='password'
+                    value = {details.password}
+                    onChange = {handleChange}
+                />
+                <input 
+                    type = 'submit'
+                    name = 'submit'
+                    id = 'submit'
+               />
+            {<p id='error'>  </p>}
+            </FormGroup>
         </ModalContainer>
     </ComponentContainer>);
 }
@@ -27,6 +85,7 @@ const ComponentContainer = styled.div`
     justify-content: center;
     align-items: center;
     display:flex;
+    color: black;
 `
 
 const ModalContainer = styled.div`

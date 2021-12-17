@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Redirect } from "react-router-dom";
+import { Route } from "react-router-dom";
 import styled from 'styled-components';
 
 import Header from './Header';
@@ -15,10 +15,8 @@ const App = () => {
       <BloomHeader/>
       <Header/>
       <RouteContainer>
-        <Route exact path="/">
-          <Redirect to='/login'/>
-          <Login/>
-        </Route>       
+        <Route exact path="/" component={Login}/>
+        <Route path= '/login' component={Login}/>       
         <Route path='/view'>
           <View/>
         </Route>   
