@@ -70,12 +70,12 @@ In this project, you will demonstrate your mastery of these skills by creating *
 * [ ] In `Login.js`, add a p tag that will display an error if one occurs. Add in all state functionality needed to support error display.
 * [x ] **Make sure your error p tag has an id="error" attribute attached. Codegrade autotests will fail without them.**
 * [x ] Construct an http request that retrieves an auth token from the server when the username `Lambda` and the password `School` is passed into the request. Complete successful login auth flow and redirect to `View.js.`
-* [ ] Display an appropriate error message when login is not successful.
+* [x ] Display an appropriate error message when login is not successful.
 
 ### Route Authentication
-* [ ] Build a `PrivateRoute` component within the components folder.
-* [ ] Use the `PrivateRoute` component to build a route rendering `View.js` to the path `/view`.
-* [ ] Use the `PrivateRoute` component to build a route rendering `Logout.js` to the path `/logout`.
+* [x ] Build a `PrivateRoute` component within the components folder.
+* [x ] Use the `PrivateRoute` component to build a route rendering `View.js` to the path `/view`.
+* [x ] Use the `PrivateRoute` component to build a route rendering `Logout.js` to the path `/logout`.
 
 ### Request Authentication
 > *Complete the requests needed to execute all CRUD functions.*
