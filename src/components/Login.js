@@ -17,14 +17,12 @@ const Login = () => {
             ...details,
             [e.target.name]: e.target.value
         })
-        console.log("These are the handle change details", details)
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
         axios.post(`http://localhost:5000/api/login`, details)
             .then(res => {
-                console.log(res)
                 const { token, role, username } = res.data;
                 localStorage.setItem('Token', token);
                 localStorage.setItem('Role', role);
@@ -32,7 +30,6 @@ const Login = () => {
                 push('/view')
             })
             .catch(err => {
-                console.error("This is the error you are looking for" , err.response.data.error)
                 return (
                     setDetails({ 
                     ...details, 
