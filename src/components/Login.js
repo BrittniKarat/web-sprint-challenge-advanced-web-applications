@@ -3,7 +3,8 @@ import styled from 'styled-components';
 
 const Login = () => {
     
-    return(<ComponentContainer>
+    return(
+    <ComponentContainer>
         <ModalContainer>
             <h1>Welcome to Blogger Pro</h1>
             <h2>Please enter your account information.</h2>
