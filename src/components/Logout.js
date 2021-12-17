@@ -8,8 +8,7 @@ const Logout = () => {
 
     useEffect(() => {
         axiosWithAuth().post(`logout`, {})
-            .then(res => {
-                console.log(res)
+            .then(() => {
                 localStorage.removeItem('Token');
                 localStorage.removeItem('Username');    
                 localStorage.removeItem('Role');

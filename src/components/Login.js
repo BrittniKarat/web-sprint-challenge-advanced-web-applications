@@ -1,7 +1,7 @@
-import axios from 'axios';
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import styled from 'styled-components';
+import axiosWithAuth from '../utils/axiosWithAuth';
 
 const Login = () => {
     const [details, setDetails] = useState({
@@ -19,9 +19,9 @@ const Login = () => {
         })
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = e => {
         e.preventDefault();
-        axios.post(`http://localhost:5000/api/login`, details)
+        axiosWithAuth().post(`/login`, details)
             .then(res => {
                 const { token, role, username } = res.data;
                 localStorage.setItem('Token', token);

@@ -17,7 +17,6 @@ const View = (props) => {
     useEffect(() => {
         axiosWithAuth().get('/articles')
             .then(res => {
-                console.log(res.data)
                 setArticles(res.data)
             })
             .catch(err => {
@@ -37,7 +36,7 @@ const View = (props) => {
 
     const handleEdit = (article) => {
         axiosWithAuth().put(`/articles/${editId}`, article)
-        .then(res => {
+        .then(() => {
             push('/');
             push('/view');
         })
